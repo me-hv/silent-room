@@ -1,0 +1,20 @@
+export type AudioFileDTO = {
+  id: string;
+  title: string;
+  originalFileName: string;
+  mimeType: string;
+  category: string;
+  genre: string | null;
+  mood: string | null;
+  bpm: number | null;
+  musicalKey: string | null;
+  notes: string | null;
+  isFavorite: boolean;
+  fileSize: number;
+  duration: number | null;
+  tags: string[];
+  isPlayable: boolean;
+  streamUrl: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
