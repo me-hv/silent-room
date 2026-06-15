@@ -13,6 +13,10 @@ npx prisma generate
 
 Create `.env` from `.env.example`:
 
+```bash
+cp .env.example .env
+```
+
 ```env
 DATABASE_URL="postgresql://postgres:password@localhost:5432/silent_room?schema=public"
 AUTH_SECRET="replace-with-secure-secret"
@@ -22,6 +26,28 @@ UPLOAD_DIR="./storage/uploads"
 ```
 
 The app uses `AUTH_SECRET` or `NEXTAUTH_SECRET` to sign the local session cookie.
+
+## Deployment Checklist
+
+Before deploying, confirm these values are configured in your hosting provider:
+
+- `DATABASE_URL` points to a reachable PostgreSQL database.
+- `AUTH_SECRET` or `NEXTAUTH_SECRET` is set to a long random secret.
+- `NEXTAUTH_URL` matches the deployed site URL.
+- `UPLOAD_DIR` is only for local/server filesystem uploads. On serverless hosting, replace local filesystem uploads with external storage before production use.
+
+Build check:
+
+```bash
+npm run build
+```
+
+Database setup check:
+
+```bash
+npx prisma generate
+npm run db:push
+```
 
 ## PostgreSQL Setup on Windows
 
